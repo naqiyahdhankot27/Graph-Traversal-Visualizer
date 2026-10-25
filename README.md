@@ -185,11 +185,16 @@ Graph traversal algorithms are commonly used in:
 
 ### GraphVista Interface
 
-![GraphVista Demo](screenshots/graphvista-demo.png)
+![GraphVista Demo](screenshots/screenshot1.png)
 
-### Graph Traversal Visualization
+### Graph Traversal Visualization Breadth First Search
 
-![Graph Traversal](screenshots/graphvista-traversal.png)
+![Graph Traversal](screenshots/bfs.png)
+
+### Graph Traversal Visualization Depth First Search
+
+![Graph Traversal](screenshots/dfs.png)
+
 
 ## Author
 
