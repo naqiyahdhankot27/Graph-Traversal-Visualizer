@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphVista | DAA Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">G<span>V</span></div>
+                <div><strong>GraphVista</strong><small>ALGORITHM LAB</small></div>
+            </div>
+            <div class="side-label">WORKSPACE</div>
+            <button class="nav-item active"><span class="nav-icon">⌘</span> Graph Explorer</button>
+            <div class="side-label concepts-label">DAA CONCEPTS</div>
+            <div class="concept-card">
+                <div class="concept-dot bfs-dot"></div>
+                <div><b>BFS</b><small>Queue · Level by level</small></div>
+            </div>
+            <div class="concept-card">
+                <div class="concept-dot dfs-dot"></div>
+                <div><b>DFS</b><small>Stack / recursion · Deep first</small></div>
+            </div>
+            <div class="sidebar-note">
+                <div class="note-icon">✦</div>
+                <b>Learn by watching</b>
+                <p>See how a graph algorithm explores one node at a time.</p>
+            </div>
+            <div class="sidebar-footer">DESIGN & ANALYSIS OF ALGORITHMS<br><span>Student implementation project</span></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <div class="eyebrow">DESIGN & ANALYSIS OF ALGORITHMS</div>
+                    <h1>Graph Traversal <span>Visualizer</span></h1>
+                    <p class="subtitle">Explore how BFS and DFS move through a graph, step by step.</p>
+                </div>
+                <div class="status-pill"><span class="status-dot"></span> Interactive lab</div>
+            </header>
+
+            <section class="stats-grid">
+                <article class="stat-card"><div class="stat-top"><span>VERTICES</span><span class="stat-icon violet">◉</span></div><strong id="vertexCount">7</strong><small>Nodes in your graph</small></article>
+                <article class="stat-card"><div class="stat-top"><span>EDGES</span><span class="stat-icon blue">⌁</span></div><strong id="edgeCount">8</strong><small>Connections between nodes</small></article>
+                <article class="stat-card"><div class="stat-top"><span>VISITED</span><span class="stat-icon green">✓</span></div><strong id="visitedCount">—</strong><small id="visitedHint">Run an algorithm to begin</small></article>
+                <article class="stat-card"><div class="stat-top"><span>RUNTIME</span><span class="stat-icon orange">◷</span></div><strong id="runtime">—</strong><small>Measured on this run</small></article>
+            </section>
+
+            <section class="workspace-grid">
+                <div class="panel graph-panel">
+                    <div class="panel-heading">
+                        <div><div class="section-kicker">CANVAS</div><h2>Your graph</h2><p>Choose a node to use it as the starting point.</p></div>
+                        <button class="text-button" id="sampleButton">↻ Load sample</button>
+                    </div>
+                    <div class="graph-legend">
+                        <span><i class="legend-dot default-dot"></i>Unvisited</span>
+                        <span><i class="legend-dot current-dot"></i>Current</span>
+                        <span><i class="legend-dot visited-dot"></i>Visited</span>
+                    </div>
+                    <div class="graph-stage" id="graphStage">
+                        <svg id="graphSvg" viewBox="0 0 760 430" role="img" aria-label="Interactive graph visualization"></svg>
+                        <div class="empty-state" id="emptyState" hidden><div>◎</div><b>Your graph is empty</b><span>Add a node or load the sample graph.</span></div>
+                    </div>
+                    <div class="canvas-footer"><span><i class="live-dot"></i> Live graph canvas</span><span>Undirected graph · Adjacency list</span></div>
+                </div>
+
+                <div class="panel controls-panel">
+                    <div class="section-kicker">CONTROL CENTRE</div>
+                    <h2>Run an algorithm</h2>
+                    <p class="panel-description">Select a traversal method and watch the order unfold.</p>
+
+                    <div class="field-label">TRAVERSAL ALGORITHM</div>
+                    <div class="algorithm-options">
+                        <button class="algorithm-option selected" data-algorithm="bfs">
+                            <span class="algorithm-symbol bfs-symbol">B</span><span class="algorithm-text"><b>Breadth-First Search</b><small>Explore level by level</small></span><span class="radio"></span>
+                        </button>
+                        <button class="algorithm-option" data-algorithm="dfs">
+                            <span class="algorithm-symbol dfs-symbol">D</span><span class="algorithm-text"><b>Depth-First Search</b><small>Explore one path deeply</small></span><span class="radio"></span>
+                        </button>
+                    </div>
+
+                    <label class="field-label" for="startNode">STARTING NODE</label>
+                    <select id="startNode" class="select-control"></select>
+
+                    <div class="control-row">
+                        <button class="primary-button" id="runButton">▶ Run traversal</button>
+                        <button class="secondary-button" id="resetButton" title="Reset traversal highlights">↺</button>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="field-label">BUILD YOUR GRAPH</div>
+                    <div class="builder-row">
+                        <input id="newNodeInput" type="text" maxlength="3" placeholder="Node label (e.g. H)" aria-label="New node label">
+                        <button class="secondary-button add-button" id="addNodeButton">+ Add node</button>
+                    </div>
+                    <div class="builder-row edge-row">
+                        <select id="edgeFrom" aria-label="Edge starting node"></select>
+                        <span class="edge-link">↔</span>
+                        <select id="edgeTo" aria-label="Edge ending node"></select>
+                        <button class="secondary-button connect-button" id="connectButton">Connect</button>
+                    </div>
+                    <button class="clear-button" id="clearButton">Clear graph</button>
+                    <p class="mini-hint">Tip: add nodes first, then connect them with edges.</p>
+                </div>
+            </section>
+
+            <section class="bottom-grid">
+                <div class="panel progress-panel">
+                    <div class="panel-heading compact-heading">
+                        <div><div class="section-kicker">TRAVERSAL OUTPUT</div><h2>Visit order</h2></div>
+                        <span class="result-tag" id="resultTag">Waiting to run</span>
+                    </div>
+                    <div class="visit-order" id="visitOrder"><span class="placeholder-text">Your traversal sequence will appear here.</span></div>
+                    <div class="step-controls">
+                        <button class="secondary-button" id="prevStepButton" disabled>← Previous</button>
+                        <div class="step-count" id="stepCount">Step 0 of 0</div>
+                        <button class="secondary-button" id="nextStepButton" disabled>Next →</button>
+                    </div>
+                    <div class="step-message" id="stepMessage"><span class="message-icon">i</span><span>Run BFS or DFS to see an explanation for each step.</span></div>
+                </div>
+                <div class="panel complexity-panel">
+                    <div class="section-kicker">DAA QUICK NOTES</div><h2>Algorithm analysis</h2>
+                    <div class="complexity-row"><div><b>Time complexity</b><small>Adjacency list representation</small></div><code>O(V + E)</code></div>
+                    <div class="complexity-row"><div><b>Space complexity</b><small>Visited set + queue/recursion</small></div><code>O(V)</code></div>
+                    <div class="complexity-note"><b>Why does it matter?</b><p>Both algorithms visit reachable vertices and inspect their edges. BFS uses a queue; DFS uses recursion in this implementation.</p></div>
+                </div>
+            </section>
+            <footer class="page-footer">GRAPHVISTA <span>·</span> Built for learning algorithms, one step at a time.</footer>
+        </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
