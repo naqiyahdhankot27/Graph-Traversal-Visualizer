@@ -1,32 +1,32 @@
 # GraphVista — Graph Traversal Visualizer
 
-A DAA (Design and Analysis of Algorithms) implementation project built using Python and Flask. It visualizes two fundamental graph traversal algorithms, **Breadth-First Search (BFS)** and **Depth-First Search (DFS)**, through an interactive web interface.
+A DAA (Design and Analysis of Algorithms) project developed using Python and Flask. It visualizes two fundamental graph traversal algorithms, **Breadth-First Search (BFS)** and **Depth-First Search (DFS)**, through an interactive web interface.
 
-GraphVista helps users understand how graph traversal algorithms explore vertices and how their traversal order differs depending on the algorithm used.
+GraphVista helps users understand how graph traversal algorithms explore vertices and how their traversal order differs.
 
 ## Features
 
-* Visualizes graph vertices and edges through an interactive interface
-* Implements Breadth-First Search (BFS)
-* Implements Depth-First Search (DFS)
-* Allows users to select a starting vertex
-* Loads a predefined sample graph
-* Supports adding vertices and edges
-* Displays the traversal order of visited vertices
-* Provides step-by-step traversal visualization
-* Explains the time and space complexity of the algorithms
+* Interactive visualization of graph vertices and edges
+* Implementation of Breadth-First Search (BFS)
+* Implementation of Depth-First Search (DFS)
+* Selection of a starting vertex
+* Predefined sample graph
+* Option to add vertices and edges
+* Visualization of the traversal order
+* Step-by-step traversal navigation
+* Algorithm complexity information
 
 ## Algorithms Used
 
-**1. Breadth-First Search (BFS)**
+### 1. Breadth-First Search (BFS)
 
-BFS explores a graph level by level. It visits the starting vertex first, followed by its unvisited neighbors, before moving to the next level.
+BFS explores a graph level by level, visiting neighboring vertices before moving to the next level.
 
 * **Data structure:** Queue
 * **Approach:** First In, First Out (FIFO)
 * **Time complexity:** `O(V + E)`
 
-**2. Depth-First Search (DFS)**
+### 2. Depth-First Search (DFS)
 
 DFS explores one path as deeply as possible before backtracking to explore other unvisited vertices.
 
@@ -38,83 +38,67 @@ Here, `V` represents the number of vertices and `E` represents the number of edg
 
 ## Technologies Used
 
-* Python — graph representation and traversal algorithms
-* Flask — backend web framework
-* HTML — structure of the web interface
-* CSS — styling and layout
-* JavaScript — user interactions and graph visualization
-* SVG (Scalable Vector Graphics) — drawing graph vertices, edges, and highlights
-* `collections.deque` — queue implementation for BFS
+* **Python:** Graph representation and traversal algorithms
+* **Flask:** Backend web framework
+* **HTML:** Structure of the web interface
+* **CSS:** Interface styling
+* **JavaScript:** User interactions and visualization
+* **SVG:** Drawing graph vertices, edges, and highlights
+* **collections.deque:** Queue implementation for BFS
 
 ## Project Structure
 
 ```text
 GraphVista/
-├── app.py                 # Flask application and backend logic
-├── requirements.txt       # Python dependencies
-├── README.md              # Project documentation
-├── LICENSE                # Project license
-├── .gitignore             # Files excluded from Git
+├── app.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+├── .gitignore
 │
 ├── templates/
-│   └── index.html         # Main webpage
+│   └── index.html
 │
-└── static/
-    ├── style.css          # Interface styling
-    └── script.js          # Frontend logic and visualization
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+└── screenshots/
+    ├── graphvista-demo.png
+    └── graphvista-traversal.png
 ```
 
 ## Setup and Run (Step by Step)
 
 ### Step 1: Install the Requirements
 
-Make sure you have the following installed:
+The following software is required:
 
 * Python
 * Visual Studio Code
 * Python extension for VS Code
-* Git (optional, if downloading the project ZIP)
+* Git
 
-During Python installation on Windows, enable the option to add Python to PATH if it is available.
-
-### Step 2: Get the Project
-
-Clone the GitHub repository:
+### Step 2: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/GraphVista.git
+git clone https://github.com/naqiyahdhankot27/GraphVista.git
 cd GraphVista
 ```
 
-Replace `YOUR-USERNAME` with your actual GitHub username.
-
-Alternatively, download the ZIP file from GitHub, extract it, and open the `GraphVista` folder in VS Code.
-
 ### Step 3: Create a Virtual Environment
-
-Open the terminal in VS Code and run:
 
 ```bash
 python -m venv .venv
 ```
 
-On Windows PowerShell, activate the environment:
+On Windows PowerShell, activate the virtual environment:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-If PowerShell blocks activation, run the following command in the same terminal:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Then activate the environment again.
-
-### Step 4: Install the Libraries
-
-Install the required Python packages:
+### Step 4: Install Dependencies
 
 ```bash
 python -m pip install -r requirements.txt
@@ -122,43 +106,39 @@ python -m pip install -r requirements.txt
 
 ### Step 5: Run the Application
 
-Start the Flask server:
-
 ```bash
 python app.py
 ```
 
-Wait for the server to start. Open the local address shown in the terminal. If Flask is using its default port, the address will normally be:
+Once the Flask server starts, open the application in a browser:
 
-```text
 http://127.0.0.1:5000
-```
 
-### Step 6: Use the Application
+### Step 6: Use GraphVista
 
-1. Open GraphVista in your browser.
+1. Open the application in your browser.
 2. Load the sample graph or create a graph using the available controls.
 3. Select a starting vertex.
 4. Choose BFS or DFS.
 5. Start the traversal.
-6. Observe the order in which vertices are visited.
+6. Observe the traversal order and visualization.
 7. Use the available navigation controls to examine the traversal steps.
 
-To stop the application, press `Ctrl + C` in the terminal.
+Press `Ctrl + C` in the terminal to stop the application.
 
 ## How It Works
 
-| Concept        | Meaning in GraphVista                             |
-| -------------- | ------------------------------------------------- |
-| Graph          | A collection of vertices connected by edges       |
-| Vertex         | An individual node in the graph                   |
-| Edge           | A connection between two vertices                 |
-| Adjacency list | A representation of each vertex and its neighbors |
-| BFS            | Explores neighboring vertices level by level      |
-| DFS            | Explores a path deeply before backtracking        |
-| Queue          | Stores vertices waiting to be explored in BFS     |
-| Recursion      | Allows DFS to explore vertices and backtrack      |
-| Visited set    | Tracks vertices that have already been visited    |
+| Concept        | Description                                    |
+| -------------- | ---------------------------------------------- |
+| Graph          | A collection of vertices connected by edges    |
+| Vertex         | An individual node in the graph                |
+| Edge           | A connection between two vertices              |
+| Adjacency list | Stores the neighboring vertices of each vertex |
+| BFS            | Explores neighboring vertices level by level   |
+| DFS            | Explores a path deeply before backtracking     |
+| Queue          | Stores vertices waiting to be explored in BFS  |
+| Recursion      | Allows DFS to explore and backtrack            |
+| Visited set    | Tracks vertices that have already been visited |
 
 ## Complexity Analysis
 
@@ -167,64 +147,48 @@ Let:
 * `V` = number of vertices
 * `E` = number of edges
 
-| Parameter                             | BFS            | DFS             |
-| ------------------------------------- | -------------- | --------------- |
-| Traversal method                      | Level by level | Depth first     |
-| Data structure                        | Queue          | Recursion stack |
-| Time complexity                       | `O(V + E)`     | `O(V + E)`      |
-| Auxiliary space complexity            | `O(V)`         | `O(V)`          |
-| Graph storage using an adjacency list | `O(V + E)`     | `O(V + E)`      |
+| Parameter                  | BFS            | DFS             |
+| -------------------------- | -------------- | --------------- |
+| Traversal method           | Level by level | Depth first     |
+| Data structure             | Queue          | Recursion stack |
+| Time complexity            | `O(V + E)`     | `O(V + E)`      |
+| Auxiliary space complexity | `O(V)`         | `O(V)`          |
+| Graph storage              | `O(V + E)`     | `O(V + E)`      |
 
-The time complexity of both algorithms is `O(V + E)` when using an adjacency-list representation.
+The time complexity of BFS and DFS is `O(V + E)` when the graph is represented using an adjacency list.
 
-The auxiliary space complexity is `O(V)` for the visited information and the queue or recursion stack in the worst case. The graph itself requires `O(V + E)` space.
+The auxiliary space complexity is `O(V)` for the visited information and traversal data structures in the worst case. The graph itself requires `O(V + E)` space.
 
 ## Applications
 
-Graph traversal algorithms are useful in many areas of computer science, including:
+Graph traversal algorithms are commonly used in:
 
 * Network exploration
 * Connectivity checking
 * Social network analysis
 * Web crawling
-* Pathfinding and route exploration
+* Pathfinding
 * Dependency analysis
 * Search and problem-solving applications
 
 ## Future Improvements
 
 * Support for directed and weighted graphs
-* Additional algorithms such as Dijkstra's shortest-path algorithm
+* Additional graph algorithms, such as Dijkstra's algorithm
 * More graph layout options
 * Graph import and export functionality
-* Improved visualization controls
+* Enhanced visualization controls
 * Support for larger and more complex graphs
-
-These are possible future improvements and are not necessarily implemented in the current version.
 
 ## Output
 
-Screenshots of the running application can be added to demonstrate the graph visualization and traversal results.
+### GraphVista Interface
 
-Create a folder named `screenshots` in the project directory and save your screenshots inside it.
-
-Example structure:
-
-```text
-screenshots/
-├── graphvista-demo.png
-└── graphvista-traversal.png
-```
-
-Display them in this section using:
-
-```markdown
 ![GraphVista Demo](screenshots/graphvista-demo.png)
 
-![Graph Traversal Visualization](screenshots/graphvista-traversal.png)
-```
+### Graph Traversal Visualization
 
-Replace these example filenames with the actual names of your screenshots.
+![Graph Traversal](screenshots/graphvista-traversal.png)
 
 ## Author
 
@@ -240,4 +204,4 @@ This project was developed as part of the DAA coursework to understand and visua
 
 ## License
 
-Refer to the `LICENSE` file in this repository for the applicable license terms.
+This project is distributed under the terms specified in the `LICENSE` file.
