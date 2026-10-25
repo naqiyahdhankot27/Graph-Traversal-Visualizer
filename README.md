@@ -64,8 +64,9 @@ GraphVista/
 │   └── script.js
 │
 └── screenshots/
-    ├── graphvista-demo.png
-    └── graphvista-traversal.png
+    ├── screenshot1.png
+    ├── bfs.png
+    └── dfs.png
 ```
 
 ## Setup and Run (Step by Step)
